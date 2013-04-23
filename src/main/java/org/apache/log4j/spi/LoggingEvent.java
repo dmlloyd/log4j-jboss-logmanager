@@ -266,6 +266,7 @@ public class LoggingEvent implements Serializable {
         final long timeStamp = getField.get("timeStamp", -1L);
         final String threadName = (String) getField.get("threadName", null);
         final ThrowableInformation throwableInfo = (ThrowableInformation) getField.get("throwableInfo", ThrowableInformation.class);
+        throwableInfo.getThrowableStrRep(); // force string representation to be cached
 
         final ExtLogRecord record = new ExtLogRecord(JBossLevelMapping.getLevelFor(level), renderedMessage, ExtLogRecord.FormatStyle.NO_FORMAT, Logger.class.getName());
         if (categoryName != null) record.setLoggerName(categoryName.toString());
